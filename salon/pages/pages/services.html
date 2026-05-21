@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — JUICE Salon</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">JUICE</a>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="services.html" class="nav-link active">Services</a></li>
+      <li><a href="team.html" class="nav-link">Team</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="booking.html" class="nav-cta">Book Now</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="booking.html" class="mobile-cta">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="section-tag">What We Offer</div>
+      <h1>Our <em>Services</em></h1>
+    </div>
+  </section>
+
+  <div class="services-page">
+    <div class="services-filter">
+      <button class="filter-btn active" data-filter="all">All Services</button>
+      <button class="filter-btn" data-filter="colour">Colour</button>
+      <button class="filter-btn" data-filter="cut">Cut & Style</button>
+      <button class="filter-btn" data-filter="treatment">Treatments</button>
+      <button class="filter-btn" data-filter="extensions">Extensions</button>
+      <button class="filter-btn" data-filter="bridal">Bridal</button>
+    </div>
+
+    <div class="services-list">
+      <!-- COLOUR -->
+      <div class="service-item" data-category="colour">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">01</span>
+            <h3>Full Colour</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £95</span>
+            <span class="service-item-duration">2.5–3.5 hrs</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>A single-process colour application from root to tip. Our colourists will conduct an in-depth consultation to select the perfect shade, tone, and technique for your hair type and skin tone. Includes shampoo, condition, and blowdry finish.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="colour">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">02</span>
+            <h3>Balayage & Highlights</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £130</span>
+            <span class="service-item-duration">3–4 hrs</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>Hand-painted balayage for a sun-kissed, natural-looking result. Includes consultation, colour application, toner, shampoo, conditioning treatment, and a full blowdry. Our most requested service — and for good reason.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="colour">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">03</span>
+            <h3>Toner & Gloss</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £45</span>
+            <span class="service-item-duration">45–75 min</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>Refresh faded colour or add shine and tone with a dedicated gloss service. Perfect as a maintenance treatment between full colour appointments. Neutralises brassiness and restores vibrancy instantly.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- CUT -->
+      <div class="service-item" data-category="cut">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">04</span>
+            <h3>Precision Cut</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £65</span>
+            <span class="service-item-duration">60–90 min</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>A sculpted, precision cut tailored to your face shape, hair texture, and personal aesthetic. Every cut begins with a thorough consultation. Includes shampoo, conditioning mask, and blowdry styling to showcase the shape at its best.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="cut">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">05</span>
+            <h3>Blowdry & Style</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £40</span>
+            <span class="service-item-duration">45–60 min</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>A luxury shampoo, conditioning treatment, and professional blowdry finish. Choose from sleek and straight, voluminous waves, or a custom finish agreed in consultation. Perfect for events or a mid-week refresh.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- TREATMENTS -->
+      <div class="service-item" data-category="treatment">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">06</span>
+            <h3>Brazilian Keratin Blowout</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £220</span>
+            <span class="service-item-duration">3–4 hrs</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>Permanently smooth frizz and reduce drying time by up to 60%. Our formaldehyde-free Brazilian keratin treatment seals the cuticle and infuses the hair shaft with protein. Results last 3–5 months with proper care.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="treatment">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">07</span>
+            <h3>Scalp Therapy & Analysis</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £80</span>
+            <span class="service-item-duration">60–90 min</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>A complete scalp consultation using diagnostic tools to assess sebum production, scalp condition, and hair density. Followed by a personalised treatment targeting dryness, oiliness, dandruff, or thinning. Transformative results from appointment one.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="treatment">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">08</span>
+            <h3>Olaplex Repair Treatment</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £55</span>
+            <span class="service-item-duration">45–75 min</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>A bond-rebuilding treatment that repairs broken disulfide bonds from within the hair shaft. Dramatically reduces breakage, restores elasticity, and returns softness and shine to damaged hair. Can be combined with any colour service.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- EXTENSIONS -->
+      <div class="service-item" data-category="extensions">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">09</span>
+            <h3>Tape-In Extensions</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £200</span>
+            <span class="service-item-duration">2–3 hrs</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>The most seamless, lightweight extension method. Medical-grade adhesive tape wefts are layered into the hair for an undetectable finish. Ideal for adding length and volume with minimal damage. Re-application recommended every 8–10 weeks.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="extensions">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">10</span>
+            <h3>Micro-Ring Extensions</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £350</span>
+            <span class="service-item-duration">3–5 hrs</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>Individual strands attached using tiny metal rings — no heat, no adhesive. A long-term solution offering the most natural movement. Available in 100% Remy human hair. Maintenance every 12–16 weeks.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- BRIDAL -->
+      <div class="service-item" data-category="bridal">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">11</span>
+            <h3>Bridal Hair Package</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £250</span>
+            <span class="service-item-duration">4+ hrs</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>A complete bridal experience including pre-wedding consultation, trial run, and on-the-day styling for the bride. We travel to venue or you visit the salon. Package can include bridesmaids and members of the wedding party.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="service-item" data-category="bridal">
+        <div class="service-item-header">
+          <div class="service-item-title">
+            <span class="service-item-num">12</span>
+            <h3>Occasion Styling</h3>
+          </div>
+          <div class="service-item-meta">
+            <span class="service-item-price">From £80</span>
+            <span class="service-item-duration">60–90 min</span>
+            <svg class="service-item-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+        </div>
+        <div class="service-item-body">
+          <div class="service-item-body-inner">
+            <p>Event-ready styling for galas, parties, awards ceremonies, and special occasions. Includes consultation on the desired look, full wash and prep, and a bespoke style. Add-on hair accessories available at the salon.</p>
+            <a href="booking.html" class="btn-primary">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h2>Stay in the loop.</h2>
+        <p>Exclusive offers, style inspiration, and early access to new treatments.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">JUICE</div>
+        <p>London's most awarded independent hair salon since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Colour & Balayage</a></li>
+            <li><a href="#">Precision Cut</a></li>
+            <li><a href="#">Extensions</a></li>
+            <li><a href="#">Bridal</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="contact.html">Chelsea</a></li>
+            <li><a href="contact.html">Shoreditch</a></li>
+            <li><a href="contact.html">Notting Hill</a></li>
+            <li><a href="contact.html">Mayfair</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 JUICE Salons Ltd. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

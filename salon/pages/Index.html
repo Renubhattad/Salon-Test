@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JUICE — Luxury Hair & Beauty Salon</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <svg viewBox="0 0 200 60" class="preloader-logo">
+        <text x="10" y="48" font-family="Cormorant Garamond" font-size="52" font-weight="300" fill="white">JUICE</text>
+      </svg>
+      <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">JUICE</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="pages/services.html" class="nav-link">Services</a></li>
+      <li><a href="pages/team.html" class="nav-link">Team</a></li>
+      <li><a href="pages/gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="pages/about.html" class="nav-link">About</a></li>
+      <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="pages/booking.html" class="nav-cta">Book Now</a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pages/services.html">Services</a></li>
+        <li><a href="pages/team.html">Team</a></li>
+        <li><a href="pages/gallery.html">Gallery</a></li>
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+        <li><a href="pages/booking.html" class="mobile-cta">Book Now</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <p>@juicesalons</p>
+        <div class="mobile-socials">
+          <a href="#">IG</a><a href="#">FB</a><a href="#">TK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+      <div class="hero-grain"></div>
+      <!-- Animated abstract shapes -->
+      <div class="hero-shape s1"></div>
+      <div class="hero-shape s2"></div>
+      <div class="hero-shape s3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-dot"></span>
+        <span>Est. 2012 · London</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="hero-line">Where Hair</span>
+        <span class="hero-line italic">Becomes</span>
+        <span class="hero-line">Art.</span>
+      </h1>
+      <p class="hero-sub">Award-winning salon experience. Colour, cut & care reimagined for the modern era.</p>
+      <div class="hero-actions">
+        <a href="pages/booking.html" class="btn-primary">Book an Appointment</a>
+        <a href="pages/services.html" class="btn-ghost">Explore Services →</a>
+      </div>
+    </div>
+
+    <div class="hero-ticker">
+      <div class="ticker-track">
+        <span>HAIR COLOUR</span><span class="ticker-dot">✦</span>
+        <span>BALAYAGE</span><span class="ticker-dot">✦</span>
+        <span>KERATIN TREATMENT</span><span class="ticker-dot">✦</span>
+        <span>HAIR EXTENSIONS</span><span class="ticker-dot">✦</span>
+        <span>BRIDAL STYLING</span><span class="ticker-dot">✦</span>
+        <span>SCALP THERAPY</span><span class="ticker-dot">✦</span>
+        <span>PRECISION CUT</span><span class="ticker-dot">✦</span>
+        <span>HAIR COLOUR</span><span class="ticker-dot">✦</span>
+        <span>BALAYAGE</span><span class="ticker-dot">✦</span>
+        <span>KERATIN TREATMENT</span><span class="ticker-dot">✦</span>
+        <span>HAIR EXTENSIONS</span><span class="ticker-dot">✦</span>
+        <span>BRIDAL STYLING</span><span class="ticker-dot">✦</span>
+        <span>SCALP THERAPY</span><span class="ticker-dot">✦</span>
+        <span>PRECISION CUT</span><span class="ticker-dot">✦</span>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- INTRO STATS -->
+  <section class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num" data-target="12">0</span>
+        <span class="stat-label">Years of Excellence</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="48">0</span>
+        <span class="stat-label">Master Stylists</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="6">0</span>
+        <span class="stat-label">Flagship Locations</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="30000">0</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip">
+    <div class="about-strip-text">
+      <div class="section-tag">Our Philosophy</div>
+      <h2 class="section-title">Not just a salon.<br/><em>A transformation.</em></h2>
+      <p>JUICE is where technical mastery meets artistic vision. Every appointment is a private consultation — we listen, advise, and create hair that is uniquely, beautifully yours. No templates. No shortcuts. Only craft.</p>
+      <a href="pages/about.html" class="btn-underline">Discover Our Story →</a>
+    </div>
+    <div class="about-strip-visual">
+      <div class="about-image-main">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80" alt="Salon interior" />
+      </div>
+      <div class="about-image-float">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300&q=80" alt="Styling" />
+        <div class="about-badge">
+          <span class="badge-num">★★★★★</span>
+          <span class="badge-text">Best Salon 2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-header">
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Our Signature <em>Services</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-index="01">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M13 20c0-3.866 3.134-7 7-7s7 3.134 7 7-3.134 7-7 7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="20" cy="20" r="2" fill="currentColor"/></svg>
+        </div>
+        <h3>Colour & Balayage</h3>
+        <p>From subtle highlights to full transformations — our colourists are internationally trained artists.</p>
+        <div class="service-price">From £95</div>
+        <a href="pages/services.html" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card" data-index="02">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M20 6c0 0-10 8-10 16a10 10 0 0020 0C30 14 20 6 20 6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M20 18v8M16 22h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Precision Cut</h3>
+        <p>Architecture for your hair. Every cut is calibrated to your face shape, texture, and lifestyle.</p>
+        <div class="service-price">From £65</div>
+        <a href="pages/services.html" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card" data-index="03">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M10 30c5-10 15-10 20 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M14 20c3-6 9-6 12 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M17 12c1.5-3 4.5-3 6 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Keratin & Treatments</h3>
+        <p>Brazilian blowout, deep conditioning, protein repair — smooth, glossy, frizz-free results.</p>
+        <div class="service-price">From £120</div>
+        <a href="pages/services.html" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card" data-index="04">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" fill="none"><rect x="10" y="8" width="20" height="26" rx="3" stroke="currentColor" stroke-width="1.2"/><path d="M15 16h10M15 22h7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Extensions</h3>
+        <p>Tape-in, micro-ring, and fusion extensions. Volume and length with zero compromise on health.</p>
+        <div class="service-price">From £200</div>
+        <a href="pages/services.html" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card" data-index="05">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M20 10l2.5 7.5H30l-6.5 4.5 2.5 7.5L20 25l-6 4.5 2.5-7.5L10 17.5h7.5z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Bridal & Occasion</h3>
+        <p>Your most important moments deserve perfection. Consultations, trials, and on-the-day expertise.</p>
+        <div class="service-price">From £150</div>
+        <a href="pages/services.html" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card" data-index="06">
+        <div class="service-icon">
+          <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="12" stroke="currentColor" stroke-width="1.2"/><path d="M20 14v12M14 20h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Scalp Therapy</h3>
+        <p>Medical-grade scalp analysis and targeted treatments for thinning, dryness, and sensitivity.</p>
+        <div class="service-price">From £80</div>
+        <a href="pages/services.html" class="service-link">Learn More →</a>
+      </div>
+    </div>
+    <div class="services-cta">
+      <a href="pages/services.html" class="btn-primary">View Full Menu & Pricing</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE GALLERY -->
+  <section class="gallery-marquee">
+    <div class="marquee-row">
+      <div class="marquee-track">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&q=80" alt="" />
+        <!-- Duplicate -->
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=400&q=80" alt="" />
+      </div>
+    </div>
+    <div class="marquee-row reverse">
+      <div class="marquee-track">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1583954239851-a851f81a5b38?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" alt="" />
+        <!-- Duplicate -->
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1583954239851-a851f81a5b38?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" alt="" />
+      </div>
+    </div>
+    <div class="gallery-overlay-text">
+      <a href="pages/gallery.html" class="btn-primary">View Full Gallery →</a>
+    </div>
+  </section>
+
+  <!-- TEAM PREVIEW -->
+  <section class="team-section">
+    <div class="team-header">
+      <div class="section-tag">The Talent</div>
+      <h2 class="section-title">Meet Our <em>Artists</em></h2>
+      <p class="section-sub">Hand-picked, internationally trained stylists who live and breathe their craft.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Sophie Laurent" />
+          <div class="team-hover">
+            <a href="pages/booking.html?stylist=sophie" class="btn-sm">Book Sophie</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Sophie Laurent</h3>
+          <span>Creative Director & Colour Expert</span>
+          <div class="team-tags"><span>Balayage</span><span>Editorial</span></div>
+        </div>
+      </div>
+      <div class="team-card featured">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Marcus Chen" />
+          <div class="team-hover">
+            <a href="pages/booking.html?stylist=marcus" class="btn-sm">Book Marcus</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Marcus Chen</h3>
+          <span>Senior Stylist & Cut Specialist</span>
+          <div class="team-tags"><span>Precision Cut</span><span>Texture</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=400&q=80" alt="Amara Osei" />
+          <div class="team-hover">
+            <a href="pages/booking.html?stylist=amara" class="btn-sm">Book Amara</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Amara Osei</h3>
+          <span>Extensions & Bridal Specialist</span>
+          <div class="team-tags"><span>Extensions</span><span>Bridal</span></div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img-wrap">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80" alt="Isla Reid" />
+          <div class="team-hover">
+            <a href="pages/booking.html?stylist=isla" class="btn-sm">Book Isla</a>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Isla Reid</h3>
+          <span>Scalp Therapist & Trichologist</span>
+          <div class="team-tags"><span>Scalp</span><span>Treatments</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="team-cta">
+      <a href="pages/team.html" class="btn-ghost">Meet the Full Team →</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-bg"></div>
+    <div class="testimonials-inner">
+      <div class="section-tag light">Client Love</div>
+      <h2 class="section-title light">What Our Clients <em>Say</em></h2>
+      <div class="testimonials-slider" id="testimonialsSlider">
+        <div class="testimonial-slide active">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"I've been going to JUICE for three years and I cannot imagine trusting anyone else with my hair. Sophie transformed my whole look and the vibe in the salon is genuinely unlike anywhere else in London."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt="Client" />
+            <div>
+              <strong>Jessica M.</strong>
+              <span>Chelsea, London</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The balayage Marcus gave me was the exact vision I had in my head. He was so attentive and explained every step. The result is just stunning — I get compliments every single week."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80" alt="Client" />
+            <div>
+              <strong>Rachel T.</strong>
+              <span>Shoreditch, London</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Amara did my bridal hair for my wedding last spring. Every single person asked who did my hair. She's an absolute genius and made me feel completely at ease on the most important day of my life."</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&q=80" alt="Client" />
+            <div>
+              <strong>Emily K.</strong>
+              <span>Notting Hill, London</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="locations-section">
+    <div class="section-tag">Find Us</div>
+    <h2 class="section-title">Our <em>Locations</em></h2>
+    <div class="locations-grid">
+      <div class="location-card">
+        <div class="location-num">01</div>
+        <h3>Chelsea</h3>
+        <p>42 King's Road, SW3 4UD</p>
+        <p class="location-hours">Mon–Sat 9am–8pm · Sun 10am–6pm</p>
+        <a href="pages/contact.html#chelsea" class="btn-underline">Get Directions →</a>
+      </div>
+      <div class="location-card">
+        <div class="location-num">02</div>
+        <h3>Shoreditch</h3>
+        <p>18 Brick Lane, E1 6RF</p>
+        <p class="location-hours">Mon–Sat 9am–8pm · Sun 10am–6pm</p>
+        <a href="pages/contact.html#shoreditch" class="btn-underline">Get Directions →</a>
+      </div>
+      <div class="location-card">
+        <div class="location-num">03</div>
+        <h3>Notting Hill</h3>
+        <p>77 Portobello Road, W11 2QB</p>
+        <p class="location-hours">Mon–Sat 9am–8pm · Sun 11am–5pm</p>
+        <a href="pages/contact.html#nhill" class="btn-underline">Get Directions →</a>
+      </div>
+      <div class="location-card">
+        <div class="location-num">04</div>
+        <h3>Mayfair</h3>
+        <p>5 South Audley St, W1K 2PD</p>
+        <p class="location-hours">Mon–Sat 9am–9pm · Sun 11am–6pm</p>
+        <a href="pages/contact.html#mayfair" class="btn-underline">Get Directions →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="instagram-section">
+    <div class="instagram-header">
+      <h2 class="section-title">Follow the <em>Journey</em></h2>
+      <a href="https://instagram.com" target="_blank" class="insta-handle">@juicesalons</a>
+    </div>
+    <div class="insta-grid">
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=400&q=80" alt="" /><div class="insta-overlay"><span>♥ 2.4k</span></div></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&q=80" alt="" /><div class="insta-overlay"><span>♥ 1.8k</span></div></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80" alt="" /><div class="insta-overlay"><span>♥ 3.1k</span></div></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1583954239851-a851f81a5b38?w=400&q=80" alt="" /><div class="insta-overlay"><span>♥ 2.9k</span></div></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=400&q=80" alt="" /><div class="insta-overlay"><span>♥ 1.6k</span></div></div>
+      <div class="insta-item"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80" alt="" /><div class="insta-overlay"><span>♥ 4.2k</span></div></div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h2>Stay in the loop.</h2>
+        <p>Exclusive offers, style inspiration, and early access to new treatments.</p>
+      </div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">JUICE</div>
+        <p>London's most awarded independent hair salon. Where artistry meets excellence since 2012.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.07a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="pages/contact.html#chelsea">Chelsea</a></li>
+            <li><a href="pages/contact.html#shoreditch">Shoreditch</a></li>
+            <li><a href="pages/contact.html#nhill">Notting Hill</a></li>
+            <li><a href="pages/contact.html#mayfair">Mayfair</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="pages/services.html">Colour & Balayage</a></li>
+            <li><a href="pages/services.html">Precision Cut</a></li>
+            <li><a href="pages/services.html">Extensions</a></li>
+            <li><a href="pages/services.html">Bridal</a></li>
+            <li><a href="pages/services.html">Scalp Therapy</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="pages/about.html">About Us</a></li>
+            <li><a href="pages/team.html">Our Team</a></li>
+            <li><a href="pages/gallery.html">Gallery</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
+            <li><a href="pages/booking.html">Book Now</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 JUICE Salons Ltd. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
