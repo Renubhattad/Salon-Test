@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — JUICE Salon</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .map-embed {
+      width:100%; height:420px;
+      background: var(--c-card);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-lg);
+      margin-top: 3rem;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .map-placeholder {
+      text-align: center;
+    }
+    .map-placeholder svg { width:48px; height:48px; color:var(--c-accent); margin-bottom:1rem; }
+    .map-placeholder p { font-size:.85rem; color:var(--c-muted); }
+    .map-tabs { display:flex; gap:.5rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+    .map-tab {
+      padding:.4rem 1rem;
+      border:1px solid var(--c-border);
+      background:none;
+      color:var(--c-muted);
+      font-family:var(--font-body);
+      font-size:.72rem;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      border-radius:100px;
+      cursor:none;
+      transition:all var(--transition);
+    }
+    .map-tab.active { background:var(--c-accent); border-color:var(--c-accent); color:var(--c-bg); }
+    .faq-section { max-width:860px; margin:5rem auto; padding:0 3rem; }
+    .faq-section h2 { font-family:var(--font-display); font-size:2.5rem; font-weight:300; margin-bottom:2.5rem; }
+    .faq-item { border-bottom:1px solid var(--c-border); }
+    .faq-q {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.25rem 0;
+      cursor:none;
+      font-size:.95rem;
+      color:var(--c-text);
+      transition:color var(--transition);
+    }
+    .faq-q:hover { color:var(--c-accent); }
+    .faq-chevron { width:18px; height:18px; color:var(--c-muted); transition:transform var(--transition); flex-shrink:0; }
+    .faq-item.open .faq-chevron { transform:rotate(180deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+    .faq-item.open .faq-a { max-height:200px; }
+    .faq-a p { padding-bottom:1.25rem; font-size:.88rem; color:var(--c-muted); line-height:1.75; }
+    .contact-social-bar {
+      display:flex; gap:1.5rem; align-items:center;
+      padding:3rem;
+      border-top:1px solid var(--c-border);
+      max-width:1300px; margin:0 auto;
+      flex-wrap:wrap;
+    }
+    .contact-social-bar span { font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--c-muted); margin-right:1rem; }
+    .social-link {
+      display:flex; align-items:center; gap:.5rem;
+      padding:.5rem 1.25rem;
+      border:1px solid var(--c-border);
+      border-radius:100px;
+      font-size:.75rem;
+      letter-spacing:.1em;
+      color:var(--c-muted);
+      transition:all var(--transition);
+    }
+    .social-link:hover { border-color:var(--c-accent); color:var(--c-accent); }
+    .social-link svg { width:14px; height:14px; }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">JUICE</a>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="services.html" class="nav-link">Services</a></li>
+      <li><a href="team.html" class="nav-link">Team</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link active">Contact</a></li>
+    </ul>
+    <a href="booking.html" class="nav-cta">Book Now</a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="booking.html" class="mobile-cta">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-content">
+      <div class="section-tag">Get In Touch</div>
+      <h1>Find <em>Us</em></h1>
+    </div>
+  </section>
+
+  <!-- CONTACT SPLIT -->
+  <div class="contact-page">
+    <div class="contact-info">
+      <h2>Visit a salon.<br/>Say hello.</h2>
+      <p>Our doors are open six days a week. Walk-ins are welcome where availability allows, but we recommend booking online to secure your preferred time and stylist.</p>
+
+      <div class="map-tabs">
+        <button class="map-tab active" data-location="chelsea">Chelsea</button>
+        <button class="map-tab" data-location="shoreditch">Shoreditch</button>
+        <button class="map-tab" data-location="nhill">Notting Hill</button>
+        <button class="map-tab" data-location="mayfair">Mayfair</button>
+      </div>
+
+      <div class="contact-locations">
+        <div class="contact-location" id="loc-chelsea">
+          <h4>Chelsea</h4>
+          <p>42 King's Road, SW3 4UD</p>
+          <p>Mon–Sat 9am–8pm &nbsp;·&nbsp; Sun 10am–6pm</p>
+          <p style="margin-top:.5rem"><a href="tel:+442071234567" style="color:var(--c-accent)">+44 20 7123 4567</a></p>
+          <p><a href="mailto:chelsea@juicesalons.com" style="color:var(--c-accent)">chelsea@juicesalons.com</a></p>
+        </div>
+        <div class="contact-location" id="loc-shoreditch" style="display:none">
+          <h4>Shoreditch</h4>
+          <p>18 Brick Lane, E1 6RF</p>
+          <p>Mon–Sat 9am–8pm &nbsp;·&nbsp; Sun 10am–6pm</p>
+          <p style="margin-top:.5rem"><a href="tel:+442072345678" style="color:var(--c-accent)">+44 20 7234 5678</a></p>
+          <p><a href="mailto:shoreditch@juicesalons.com" style="color:var(--c-accent)">shoreditch@juicesalons.com</a></p>
+        </div>
+        <div class="contact-location" id="loc-nhill" style="display:none">
+          <h4>Notting Hill</h4>
+          <p>77 Portobello Road, W11 2QB</p>
+          <p>Mon–Sat 9am–8pm &nbsp;·&nbsp; Sun 11am–5pm</p>
+          <p style="margin-top:.5rem"><a href="tel:+442073456789" style="color:var(--c-accent)">+44 20 7345 6789</a></p>
+          <p><a href="mailto:nottinghill@juicesalons.com" style="color:var(--c-accent)">nottinghill@juicesalons.com</a></p>
+        </div>
+        <div class="contact-location" id="loc-mayfair" style="display:none">
+          <h4>Mayfair</h4>
+          <p>5 South Audley Street, W1K 2PD</p>
+          <p>Mon–Sat 9am–9pm &nbsp;·&nbsp; Sun 11am–6pm</p>
+          <p style="margin-top:.5rem"><a href="tel:+442074567890" style="color:var(--c-accent)">+44 20 7456 7890</a></p>
+          <p><a href="mailto:mayfair@juicesalons.com" style="color:var(--c-accent)">mayfair@juicesalons.com</a></p>
+        </div>
+      </div>
+
+      <!-- Map placeholder (replace iframe src with real Google Maps embed key) -->
+      <div class="map-embed">
+        <div class="map-placeholder">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M24 4C16.268 4 10 10.268 10 18c0 10.5 14 26 14 26s14-15.5 14-26c0-7.732-6.268-14-14-14z" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="18" r="5" stroke="currentColor" stroke-width="1.5"/></svg>
+          <p>Interactive map would appear here.<br/>Embed your Google Maps API key to activate.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-side">
+      <h2>Send us a<br/><em>message.</em></h2>
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Sophie" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Laurent" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input type="tel" placeholder="+44 7700 900 123" />
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <select>
+            <option value="">Select a topic…</option>
+            <option>General Enquiry</option>
+            <option>Booking Help</option>
+            <option>Bridal Consultation</option>
+            <option>Press & Collaborations</option>
+            <option>Careers</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us how we can help…" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;text-align:center;justify-content:center;">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SOCIAL BAR -->
+  <div class="contact-social-bar">
+    <span>Follow Us</span>
+    <a href="#" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @juicesalons
+    </a>
+    <a href="#" class="social-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      JUICE Salons
+    </a>
+    <a href="#" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 106.33 6.34V9.07a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.5z"/></svg>
+      @juicesalons
+    </a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <div class="section-tag">Common Questions</div>
+    <h2>FAQ</h2>
+    <div class="faq-item">
+      <div class="faq-q">
+        Do I need to book in advance?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p>We strongly recommend booking ahead, especially for colour services and weekend appointments. Our stylists can book out 2–4 weeks in advance. Walk-ins are welcome when availability allows — call your nearest salon to check.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        How long does a balayage take?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p>A full balayage including toner and blowdry typically takes 3–4 hours. We recommend arriving with clean, dry hair for best results. Your stylist will give you a more accurate time estimate at consultation.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        What's your cancellation policy?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p>We ask for at least 24 hours' notice to cancel or reschedule. Late cancellations (under 24 hours) or no-shows may be subject to a fee of up to 50% of the service value. We understand emergencies happen — please call us and we'll do our best to help.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Do you offer consultations before booking?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p>Yes — we offer complimentary 15-minute consultations for new clients considering colour services. You can book a consultation through our online booking system or by calling your nearest salon directly.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Can I bring children to my appointment?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p>We welcome children for haircuts, but as our salons contain chemicals and tools, we ask that young children are accompanied by a second adult who can supervise them during your appointment. Our Shoreditch and Chelsea locations have a small waiting area.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">
+        Do you do gift vouchers?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="faq-a"><p>Absolutely. Gift vouchers are available in any denomination, both in-salon and online. They make the perfect gift and are valid for 12 months from the date of purchase. Email hello@juicesalons.com to order.</p></div>
+    </div>
+  </div>
+
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-text"><h2>Stay in the loop.</h2><p>Exclusive offers, style inspiration, and early access to new treatments.</p></div>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">JUICE</div>
+        <p>London's most awarded independent hair salon since 2012.</p>
+        <div class="footer-socials">
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col"><h4>Visit</h4><ul><li><a href="#chelsea">Chelsea</a></li><li><a href="#shoreditch">Shoreditch</a></li><li><a href="#nhill">Notting Hill</a></li><li><a href="#mayfair">Mayfair</a></li></ul></div>
+        <div class="footer-nav-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="team.html">Team</a></li><li><a href="gallery.html">Gallery</a></li></ul></div>
+        <div class="footer-nav-col"><h4>Book</h4><ul><li><a href="booking.html">Book Online</a></li><li><a href="services.html">All Services</a></li></ul></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 JUICE Salons Ltd.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Location tabs
+    const mapTabs = document.querySelectorAll('.map-tab');
+    const locDivs = { chelsea:'loc-chelsea', shoreditch:'loc-shoreditch', nhill:'loc-nhill', mayfair:'loc-mayfair' };
+    mapTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        mapTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        Object.values(locDivs).forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+        const target = locDivs[tab.dataset.location];
+        if (target) document.getElementById(target).style.display = 'block';
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+# JUICE Salon — Complete Website
+
+## File Structure
+
+```
+juice-salon/
+├── index.html                  ← Homepage
+├── css/
+│   ├── style.css               ← Main stylesheet (shared across all pages)
+│   └── pages.css               ← Inner pages stylesheet
+├── js/
+│   └── main.js                 ← All JavaScript (cursor, nav, booking, slider, etc.)
+└── pages/
+    ├── services.html           ← Services with filterable accordion list
+    ├── team.html               ← Full team grid with bios
+    ├── gallery.html            ← Masonry gallery with lightbox + filter
+    ├── about.html              ← Brand story, values, awards, press
+    ├── contact.html            ← Contact form, location tabs, FAQ, map embed
+    ├── booking.html            ← Full 6-step booking system
+    └── 404.html                ← Custom 404 page
+```
+
+## Features
+
+### Global
+- Custom animated cursor
+- Animated preloader with fill bar
+- Sticky nav with scroll effect
+- Mobile hamburger menu
+- Scroll reveal animations
+- Newsletter signup (toast confirmation)
+- Responsive down to 320px
+
+### Homepage (index.html)
+- Animated hero with floating gradient shapes + grain texture
+- Auto-scrolling text ticker
+- Stats counter (animates on scroll into view)
+- About strip with layered images
+- Services grid (6 cards)
+- Dual-row infinite scrolling image marquee
+- Team preview with hover booking CTAs
+- Auto-advancing testimonial slider with dots
+- Location cards (4 locations)
+- Instagram-style photo grid with hover overlays
+- Newsletter section
+- Footer with full nav
+
+### Services (services.html)
+- Category filter buttons (All / Colour / Cut / Treatment / Extensions / Bridal)
+- Expandable accordion items with price, duration, and booking CTA
+
+### Team (team.html)
+- Full-grid stylist cards with photo, bio, specialties, and direct booking links
+
+### Gallery (gallery.html)
+- Masonry grid with tall/regular items
+- Category filter (All / Colour / Cut / Bridal / Extensions / Salon)
+- Click-to-open lightbox with prev/next navigation and keyboard support
+
+### About (about.html)
+- Brand origin story with stacked image layout
+- Values grid (4 pillars)
+- Scrollable awards list
+- Press/media logo strip
+
+### Contact (contact.html)
+- Location tab switcher (Chelsea / Shoreditch / Notting Hill / Mayfair)
+- Map embed placeholder (replace with Google Maps iframe)
+- Contact form (name, email, phone, subject, message)
+- Social links bar
+- FAQ accordion
+
+### Booking (booking.html)
+- 6-step booking flow with animated progress bar:
+  1. Location picker (4 cards)
+  2. Service selector (8 services with price/duration)
+  3. Stylist selector (6 stylists + "Any Available")
+  4. Calendar (month navigation) + time slots (taken/available)
+  5. Personal details form + live booking summary
+  6. Confirmation screen with full summary
+- Pre-selects stylist from URL param (?stylist=sophie)
+
+## Setup
+
+No build tools required. Open `index.html` directly in any modern browser.
+
+### For a live server:
+```bash
+# Using Python
+python -m http.server 8080
+
+# Using Node
+npx serve .
+
+# Using VS Code
+Install "Live Server" extension → right-click index.html → Open with Live Server
+```
+
+### To enable Google Maps on the contact page:
+Replace the `.map-embed` placeholder div with:
+```html
+<iframe
+  src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=King's+Road+Chelsea+London"
+  width="100%" height="420" style="border:0;border-radius:12px;"
+  allowfullscreen loading="lazy">
+</iframe>
+```
+
+## Design System
+
+| Token | Value |
+|-------|-------|
+| Background | `#0a0908` |
+| Surface | `#111009` |
+| Card | `#161410` |
+| Accent | `#c9a96e` (warm gold) |
+| Text | `#f0ece4` |
+| Muted | `#8a847a` |
+| Display Font | Cormorant Garamond |
+| Body Font | Outfit |
+
+## Customisation
+
+- **Colors**: Edit CSS variables in `:root` in `css/style.css`
+- **Images**: Replace Unsplash URLs with your own photography
+- **Locations**: Update address/hours in `index.html` and `contact.html`
+- **Services & Pricing**: Update `services.html` and `booking.html`
+- **Team**: Replace photos and bios in `team.html` and `booking.html`

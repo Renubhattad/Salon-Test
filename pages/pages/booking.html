@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book an Appointment — JUICE Salon</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .booking-wrapper {
+      min-height: 100vh;
+      padding: calc(var(--nav-h) + 4rem) 3rem 6rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .booking-header { margin-bottom: 3rem; }
+    .booking-header h1 { font-family:var(--font-display); font-size:clamp(2.5rem,5vw,4rem); font-weight:300; }
+    .booking-header h1 em { font-style:italic; color:var(--c-accent); }
+    .booking-header p { color:var(--c-muted); font-size:.9rem; margin-top:.5rem; }
+
+    /* Step progress bar */
+    .step-progress {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3rem;
+      gap: 0;
+    }
+    .step-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      flex: 1;
+    }
+    .step-node:last-child { flex: 0; }
+    .step-circle {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--c-border);
+      background: var(--c-card);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--c-muted);
+      position: relative;
+      z-index: 1;
+      transition: all var(--transition);
+    }
+    .step-node.active .step-circle { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-accent-pale); }
+    .step-node.done .step-circle { border-color: var(--c-accent); background: var(--c-accent); color: var(--c-bg); }
+    .step-label-text { font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--c-muted); margin-top:.5rem; white-space:nowrap; }
+    .step-node.active .step-label-text { color:var(--c-accent); }
+    .step-line {
+      flex: 1;
+      height: 1px;
+      background: var(--c-border);
+      margin-bottom: 1.3rem;
+      transition: background var(--transition);
+    }
+    .step-line.done { background: var(--c-accent); }
+
+    /* Panels */
+    .booking-panel { display:none; animation: fadeInUp .4s ease; }
+    .booking-panel.active { display:block; }
+
+    /* Location picker */
+    .location-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+    .loc-card {
+      background:var(--c-card); border:2px solid var(--c-border); border-radius:var(--radius-lg);
+      padding:1.5rem; cursor:none; transition:all var(--transition);
+    }
+    .loc-card:hover, .loc-card.selected { border-color:var(--c-accent); background:var(--c-accent-pale); }
+    .loc-card h4 { font-family:var(--font-display); font-size:1.3rem; margin-bottom:.3rem; }
+    .loc-card p { font-size:.82rem; color:var(--c-muted); }
+    .loc-card .loc-hours { font-size:.75rem; color:var(--c-accent); margin-top:.5rem; }
+
+    /* Confirmation panel */
+    .booking-confirm-card {
+      background:var(--c-card); border:1px solid var(--c-border); border-radius:var(--radius-lg);
+      padding:2.5rem; text-align:center; max-width:520px; margin:0 auto;
+    }
+    .confirm-icon { width:64px; height:64px; margin:0 auto 1.5rem; color:var(--c-accent); }
+    .booking-confirm-card h3 { font-family:var(--font-display); font-size:2rem; font-weight:300; margin-bottom:.5rem; }
+    .booking-confirm-card p { font-size:.88rem; color:var(--c-muted); margin-bottom:2rem; }
+    .confirm-summary { text-align:left; border-top:1px solid var(--c-border); padding-top:1.5rem; margin-bottom:2rem; }
+    .confirm-row { display:flex; justify-content:space-between; padding:.6rem 0; border-bottom:1px solid var(--c-border); font-size:.85rem; }
+    .confirm-row:last-child { border:none; }
+    .confirm-row span:first-child { color:var(--c-muted); }
+    .confirm-row span:last-child { color:var(--c-text); font-weight:500; }
+
+    @media(max-width:700px){
+      .location-grid { grid-template-columns:1fr; }
+      .booking-wrapper { padding:calc(var(--nav-h) + 2rem) 1.5rem 4rem; }
+      .step-label-text { display:none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav scrolled" id="nav">
+    <a href="../index.html" class="nav-logo">JUICE</a>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link">Home</a></li>
+      <li><a href="services.html" class="nav-link">Services</a></li>
+      <li><a href="team.html" class="nav-link">Team</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <a href="booking.html" class="nav-cta" style="border-color:var(--c-accent);background:var(--c-accent);color:var(--c-bg);">Book Now</a>
+    <button class="nav-burger" id="navBurger"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="booking.html" class="mobile-cta">Book Now</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="booking-wrapper">
+    <div class="booking-header">
+      <div class="section-tag">Online Booking</div>
+      <h1>Book Your <em>Appointment</em></h1>
+      <p>Select your location, service, stylist, and a time that works for you.</p>
+    </div>
+
+    <!-- STEP PROGRESS -->
+    <div class="step-progress" id="stepProgress">
+      <div class="step-node active" id="sn-0">
+        <div class="step-circle">1</div>
+        <span class="step-label-text">Location</span>
+      </div>
+      <div class="step-line" id="sl-0"></div>
+      <div class="step-node" id="sn-1">
+        <div class="step-circle">2</div>
+        <span class="step-label-text">Service</span>
+      </div>
+      <div class="step-line" id="sl-1"></div>
+      <div class="step-node" id="sn-2">
+        <div class="step-circle">3</div>
+        <span class="step-label-text">Stylist</span>
+      </div>
+      <div class="step-line" id="sl-2"></div>
+      <div class="step-node" id="sn-3">
+        <div class="step-circle">4</div>
+        <span class="step-label-text">Date & Time</span>
+      </div>
+      <div class="step-line" id="sl-3"></div>
+      <div class="step-node" id="sn-4">
+        <div class="step-circle">5</div>
+        <span class="step-label-text">Your Details</span>
+      </div>
+      <div class="step-line" id="sl-4"></div>
+      <div class="step-node" id="sn-5">
+        <div class="step-circle">✓</div>
+        <span class="step-label-text">Confirm</span>
+      </div>
+    </div>
+
+    <!-- PANEL 0: LOCATION -->
+    <div class="booking-panel active" id="panel-0">
+      <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;">Choose a Location</h3>
+      <div class="location-grid">
+        <div class="loc-card" data-loc="Chelsea">
+          <h4>Chelsea</h4>
+          <p>42 King's Road, SW3 4UD</p>
+          <span class="loc-hours">Mon–Sat 9am–8pm · Sun 10am–6pm</span>
+        </div>
+        <div class="loc-card" data-loc="Shoreditch">
+          <h4>Shoreditch</h4>
+          <p>18 Brick Lane, E1 6RF</p>
+          <span class="loc-hours">Mon–Sat 9am–8pm · Sun 10am–6pm</span>
+        </div>
+        <div class="loc-card" data-loc="Notting Hill">
+          <h4>Notting Hill</h4>
+          <p>77 Portobello Road, W11 2QB</p>
+          <span class="loc-hours">Mon–Sat 9am–8pm · Sun 11am–5pm</span>
+        </div>
+        <div class="loc-card" data-loc="Mayfair">
+          <h4>Mayfair</h4>
+          <p>5 South Audley Street, W1K 2PD</p>
+          <span class="loc-hours">Mon–Sat 9am–9pm · Sun 11am–6pm</span>
+        </div>
+      </div>
+      <div class="booking-nav" style="margin-top:2rem;">
+        <span></span>
+        <button class="btn-primary btn-next" id="next-0">Next: Choose Service →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 1: SERVICE -->
+    <div class="booking-panel" id="panel-1">
+      <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;">Select a Service</h3>
+      <div class="service-select-list">
+        <div class="service-select-item" data-service="Precision Cut" data-price="£65" data-duration="60 min">
+          <div><strong>Precision Cut</strong><span>Cut, shampoo & blowdry · 60 min</span></div>
+          <span class="svc-price">From £65</span>
+        </div>
+        <div class="service-select-item" data-service="Full Colour" data-price="£95" data-duration="3 hrs">
+          <div><strong>Full Colour</strong><span>Single process, shampoo & finish · 3 hrs</span></div>
+          <span class="svc-price">From £95</span>
+        </div>
+        <div class="service-select-item" data-service="Balayage & Highlights" data-price="£130" data-duration="3.5 hrs">
+          <div><strong>Balayage & Highlights</strong><span>Hand-painted, toner & blowdry · 3.5 hrs</span></div>
+          <span class="svc-price">From £130</span>
+        </div>
+        <div class="service-select-item" data-service="Blowdry & Style" data-price="£40" data-duration="45 min">
+          <div><strong>Blowdry & Style</strong><span>Shampoo, condition & finish · 45 min</span></div>
+          <span class="svc-price">From £40</span>
+        </div>
+        <div class="service-select-item" data-service="Keratin Treatment" data-price="£220" data-duration="4 hrs">
+          <div><strong>Keratin Treatment</strong><span>Brazilian blowout · 4 hrs</span></div>
+          <span class="svc-price">From £220</span>
+        </div>
+        <div class="service-select-item" data-service="Scalp Therapy" data-price="£80" data-duration="75 min">
+          <div><strong>Scalp Therapy</strong><span>Analysis & treatment · 75 min</span></div>
+          <span class="svc-price">From £80</span>
+        </div>
+        <div class="service-select-item" data-service="Extensions Consultation" data-price="Free" data-duration="30 min">
+          <div><strong>Extensions Consultation</strong><span>Free 30-min consultation · 30 min</span></div>
+          <span class="svc-price">Free</span>
+        </div>
+        <div class="service-select-item" data-service="Bridal Consultation" data-price="Free" data-duration="30 min">
+          <div><strong>Bridal Consultation</strong><span>Free 30-min consultation · 30 min</span></div>
+          <span class="svc-price">Free</span>
+        </div>
+      </div>
+      <div class="booking-nav" style="margin-top:2rem;">
+        <button class="btn-ghost btn-prev" id="prev-1">← Back</button>
+        <button class="btn-primary btn-next" id="next-1">Next: Choose Stylist →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 2: STYLIST -->
+    <div class="booking-panel" id="panel-2">
+      <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;">Choose Your Stylist</h3>
+      <div class="stylist-select-grid">
+        <div class="stylist-select-card" data-stylist="Sophie Laurent">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80" alt="Sophie" />
+          <strong>Sophie Laurent</strong>
+          <span>Creative Director</span>
+        </div>
+        <div class="stylist-select-card" data-stylist="Marcus Chen">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80" alt="Marcus" />
+          <strong>Marcus Chen</strong>
+          <span>Cut Specialist</span>
+        </div>
+        <div class="stylist-select-card" data-stylist="Amara Osei">
+          <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=200&q=80" alt="Amara" />
+          <strong>Amara Osei</strong>
+          <span>Extensions & Bridal</span>
+        </div>
+        <div class="stylist-select-card" data-stylist="Isla Reid">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&q=80" alt="Isla" />
+          <strong>Isla Reid</strong>
+          <span>Scalp Therapist</span>
+        </div>
+        <div class="stylist-select-card" data-stylist="Priya Sharma">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt="Priya" />
+          <strong>Priya Sharma</strong>
+          <span>Colour Technician</span>
+        </div>
+        <div class="stylist-select-card" data-stylist="Any Available">
+          <div style="width:80px;height:80px;border-radius:50%;background:var(--c-accent-pale);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:28px;height:28px;color:var(--c-accent)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <strong>Any Available</strong>
+          <span>Best match for service</span>
+        </div>
+      </div>
+      <div class="booking-nav" style="margin-top:2rem;">
+        <button class="btn-ghost btn-prev" id="prev-2">← Back</button>
+        <button class="btn-primary btn-next" id="next-2">Next: Date & Time →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 3: DATE & TIME -->
+    <div class="booking-panel" id="panel-3">
+      <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;">Pick a Date & Time</h3>
+      <div class="date-picker-grid">
+        <div class="calendar-wrap">
+          <div class="cal-header">
+            <h4 id="calMonthYear">Month Year</h4>
+            <div style="display:flex;gap:.5rem;">
+              <button class="cal-nav" id="prevMon">‹</button>
+              <button class="cal-nav" id="nextMon">›</button>
+            </div>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="time-slots">
+          <h4>Available Times</h4>
+          <div class="slots-grid">
+            <div class="slot">9:00 AM</div>
+            <div class="slot">9:30 AM</div>
+            <div class="slot taken">10:00 AM</div>
+            <div class="slot">10:30 AM</div>
+            <div class="slot taken">11:00 AM</div>
+            <div class="slot">11:30 AM</div>
+            <div class="slot">12:00 PM</div>
+            <div class="slot taken">12:30 PM</div>
+            <div class="slot">1:00 PM</div>
+            <div class="slot">1:30 PM</div>
+            <div class="slot">2:00 PM</div>
+            <div class="slot taken">2:30 PM</div>
+            <div class="slot">3:00 PM</div>
+            <div class="slot">3:30 PM</div>
+            <div class="slot">4:00 PM</div>
+            <div class="slot taken">4:30 PM</div>
+            <div class="slot">5:00 PM</div>
+            <div class="slot">5:30 PM</div>
+            <div class="slot">6:00 PM</div>
+            <div class="slot">6:30 PM</div>
+            <div class="slot taken">7:00 PM</div>
+            <div class="slot">7:30 PM</div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:center;margin-top:1rem;font-size:.72rem;color:var(--c-muted);">
+            <span style="display:inline-block;width:10px;height:10px;background:var(--c-accent);border-radius:2px;"></span> Available
+            <span style="display:inline-block;width:10px;height:10px;background:rgba(255,255,255,.08);border-radius:2px;border:1px solid rgba(255,255,255,.1);"></span> Taken
+          </div>
+        </div>
+      </div>
+      <div class="booking-nav" style="margin-top:2rem;">
+        <button class="btn-ghost btn-prev" id="prev-3">← Back</button>
+        <button class="btn-primary btn-next" id="next-3">Next: Your Details →</button>
+      </div>
+    </div>
+
+    <!-- PANEL 4: DETAILS -->
+    <div class="booking-panel" id="panel-4">
+      <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:1.5rem;">Your Details</h3>
+
+      <!-- Live booking summary sidebar -->
+      <div class="booking-summary" id="liveSummary">
+        <h4>Booking Summary</h4>
+        <div class="summary-row"><span>Location</span><span id="sum-location">—</span></div>
+        <div class="summary-row"><span>Service</span><span id="sum-service">—</span></div>
+        <div class="summary-row"><span>Stylist</span><span id="sum-stylist">—</span></div>
+        <div class="summary-row"><span>Date</span><span id="sum-date">—</span></div>
+        <div class="summary-row"><span>Time</span><span id="sum-time">—</span></div>
+        <div class="summary-row" style="font-weight:600;"><span>Estimated Price</span><span id="sum-price" style="color:var(--c-accent);">—</span></div>
+      </div>
+
+      <div class="contact-form" style="max-width:520px;">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" id="det-first" placeholder="Sophie" required /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" id="det-last" placeholder="Laurent" required /></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" id="det-email" placeholder="you@example.com" required /></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="det-phone" placeholder="+44 7700 900 123" required /></div>
+        <div class="form-group">
+          <label>Notes for your stylist (optional)</label>
+          <textarea id="det-notes" placeholder="Any hair history, allergies, or preferences we should know about…" rows="3"></textarea>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:.75rem;margin-top:.25rem;">
+          <input type="checkbox" id="terms" style="margin-top:3px;cursor:none;accent-color:var(--c-accent);" required />
+          <label for="terms" style="font-size:.8rem;color:var(--c-muted);cursor:none;">I agree to the <a href="#" style="color:var(--c-accent)">cancellation policy</a> and understand a 24-hour notice is required for cancellations.</label>
+        </div>
+      </div>
+
+      <div class="booking-nav" style="margin-top:2rem;">
+        <button class="btn-ghost btn-prev" id="prev-4">← Back</button>
+        <button class="btn-primary" id="confirmBooking">Confirm Booking ✦</button>
+      </div>
+    </div>
+
+    <!-- PANEL 5: CONFIRMED -->
+    <div class="booking-panel" id="panel-5">
+      <div class="booking-confirm-card">
+        <div class="confirm-icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="30" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M20 32l8 8 16-16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Booking Confirmed!</h3>
+        <p>A confirmation has been sent to your email address. We look forward to seeing you.</p>
+        <div class="confirm-summary" id="confirmSummary">
+          <div class="confirm-row"><span>Location</span><span id="cs-location">—</span></div>
+          <div class="confirm-row"><span>Service</span><span id="cs-service">—</span></div>
+          <div class="confirm-row"><span>Stylist</span><span id="cs-stylist">—</span></div>
+          <div class="confirm-row"><span>Date</span><span id="cs-date">—</span></div>
+          <div class="confirm-row"><span>Time</span><span id="cs-time">—</span></div>
+          <div class="confirm-row"><span>Client</span><span id="cs-name">—</span></div>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button onclick="window.location.reload()" class="btn-primary">Book Another</button>
+          <a href="../index.html" class="btn-ghost">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" style="margin-top:0;">
+    <div class="footer-bottom" style="max-width:1300px;margin:0 auto;padding:1.5rem 0;">
+      <p>© 2024 JUICE Salons Ltd.</p>
+      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const bookingState = {
+      location: null, service: null, price: null, duration: null,
+      stylist: null, date: null, time: null, name: null
+    };
+    let currentStep = 0;
+    const totalSteps = 6;
+
+    function updateProgress(step) {
+      for(let i = 0; i < totalSteps; i++) {
+        const node = document.getElementById('sn-' + i);
+        if(!node) continue;
+        node.classList.remove('active','done');
+        if(i < step) node.classList.add('done');
+        else if(i === step) node.classList.add('active');
+        // Check circle — show tick if done
+        const circle = node.querySelector('.step-circle');
+        if(i < step) circle.textContent = '✓';
+        else if(i === 5) circle.textContent = '✓';
+        else circle.textContent = (i + 1);
+      }
+      for(let i = 0; i < 5; i++) {
+        const line = document.getElementById('sl-' + i);
+        if(line) line.classList.toggle('done', i < step);
+      }
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.booking-panel').forEach((p,i) => p.classList.toggle('active', i === step));
+      updateProgress(step);
+      currentStep = step;
+      window.scrollTo({top: 0, behavior:'smooth'});
+    }
+
+    function updateSummary() {
+      const fields = ['location','service','stylist','date','time','price'];
+      fields.forEach(f => {
+        const el = document.getElementById('sum-' + f);
+        if(el) el.textContent = bookingState[f] || '—';
+      });
+    }
+
+    // LOCATION
+    document.querySelectorAll('.loc-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.loc-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        bookingState.location = card.dataset.loc;
+      });
+    });
+    document.getElementById('next-0').addEventListener('click', () => {
+      if(!bookingState.location) { window.showToast?.('Please select a location.'); return; }
+      goToStep(1);
+    });
+
+    // SERVICE
+    document.querySelectorAll('.service-select-item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('.service-select-item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        bookingState.service = item.dataset.service;
+        bookingState.price = item.dataset.price;
+        bookingState.duration = item.dataset.duration;
+      });
+    });
+    document.getElementById('prev-1').addEventListener('click', () => goToStep(0));
+    document.getElementById('next-1').addEventListener('click', () => {
+      if(!bookingState.service) { window.showToast?.('Please select a service.'); return; }
+      goToStep(2);
+    });
+
+    // STYLIST
+    document.querySelectorAll('.stylist-select-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.stylist-select-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        bookingState.stylist = card.dataset.stylist;
+      });
+    });
+    document.getElementById('prev-2').addEventListener('click', () => goToStep(1));
+    document.getElementById('next-2').addEventListener('click', () => {
+      if(!bookingState.stylist) { window.showToast?.('Please select a stylist.'); return; }
+      goToStep(3);
+    });
+
+    // DATE / TIME
+    document.querySelectorAll('.slot:not(.taken)').forEach(slot => {
+      slot.addEventListener('click', () => {
+        document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+        bookingState.time = slot.textContent.trim();
+        updateSummary();
+      });
+    });
+    document.getElementById('prev-3').addEventListener('click', () => goToStep(2));
+    document.getElementById('next-3').addEventListener('click', () => {
+      if(!bookingState.time) { window.showToast?.('Please select a time slot.'); return; }
+      updateSummary();
+      goToStep(4);
+    });
+
+    // CONFIRM
+    document.getElementById('prev-4').addEventListener('click', () => goToStep(3));
+    document.getElementById('confirmBooking').addEventListener('click', () => {
+      const first = document.getElementById('det-first').value.trim();
+      const last = document.getElementById('det-last').value.trim();
+      const email = document.getElementById('det-email').value.trim();
+      const phone = document.getElementById('det-phone').value.trim();
+      const terms = document.getElementById('terms').checked;
+      if(!first || !last || !email || !phone) { window.showToast?.('Please fill in all required fields.'); return; }
+      if(!terms) { window.showToast?.('Please accept the cancellation policy.'); return; }
+      bookingState.name = first + ' ' + last;
+
+      // Populate confirmation
+      document.getElementById('cs-location').textContent = bookingState.location || '—';
+      document.getElementById('cs-service').textContent = bookingState.service || '—';
+      document.getElementById('cs-stylist').textContent = bookingState.stylist || '—';
+      document.getElementById('cs-date').textContent = bookingState.date || 'Selected date';
+      document.getElementById('cs-time').textContent = bookingState.time || '—';
+      document.getElementById('cs-name').textContent = bookingState.name;
+
+      goToStep(5);
+    });
+
+    // Calendar date capture
+    const origCalDay = document.addEventListener;
+    document.addEventListener('click', function(e) {
+      if(e.target.classList.contains('cal-day') && !e.target.classList.contains('disabled') && !e.target.classList.contains('empty')) {
+        const calHeader = document.getElementById('calMonthYear').textContent;
+        bookingState.date = e.target.textContent + ' ' + calHeader;
+        updateSummary();
+      }
+    });
+
+    // Pre-select stylist from URL param
+    const params = new URLSearchParams(window.location.search);
+    const stylistParam = params.get('stylist');
+    if(stylistParam) {
+      const map = { sophie:'Sophie Laurent', marcus:'Marcus Chen', amara:'Amara Osei', isla:'Isla Reid', priya:'Priya Sharma', james:'James Whitfield' };
+      const name = map[stylistParam.toLowerCase()];
+      if(name) {
+        document.querySelectorAll('.stylist-select-card').forEach(card => {
+          if(card.dataset.stylist === name) {
+            card.classList.add('selected');
+            bookingState.stylist = name;
+          }
+        });
+      }
+    }
+
+    updateProgress(0);
+  </script>
+</body>
+</html>

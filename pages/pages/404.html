@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — JUICE Salon</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at center, rgba(201,169,110,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .error-num {
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(201,169,110,0.12);
+      letter-spacing: -0.04em;
+      position: absolute;
+      user-select: none;
+    }
+    .error-content { position: relative; z-index: 1; }
+    .error-content h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .error-content h1 em { font-style: italic; color: var(--c-accent); }
+    .error-content p { font-size: .95rem; color: var(--c-muted); max-width: 400px; margin: 0 auto 2.5rem; }
+    .error-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <nav class="nav" id="nav">
+    <a href="../index.html" class="nav-logo">JUICE</a>
+    <a href="booking.html" class="nav-cta">Book Now</a>
+  </nav>
+
+  <div class="error-page">
+    <div class="error-bg"></div>
+    <div class="error-num">404</div>
+    <div class="error-content">
+      <div class="section-tag">Oops</div>
+      <h1>Page <em>Not Found</em></h1>
+      <p>The page you're looking for seems to have moved, or perhaps it was never here. Let us guide you back.</p>
+      <div class="error-links">
+        <a href="../index.html" class="btn-primary">Back to Home</a>
+        <a href="booking.html" class="btn-ghost">Book an Appointment →</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
